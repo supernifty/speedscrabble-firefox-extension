@@ -1,0 +1,5 @@
+content   speedscrabble                 chrome/content/
+skin      speedscrabble   classic/1.0   chrome/skin/
+
+overlay   chrome://browser/content/browser.xul   chrome://speedscrabble/content/overlay.xul
+style chrome://global/content/customizeToolbar.xul chrome://speedscrabble/skin/overlay.css
