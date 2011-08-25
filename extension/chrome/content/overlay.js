@@ -1,10 +1,19 @@
 var speedscrabble = {
   server: "http://www.supernifty.com.au/",
+  ok: false,
 
   load: function() {
     // initialization code
     this.initialized = true;
     window.setTimeout( function() { speedscrabble.update() }, 5000 );
+    window.setInterval( function() { speedscrabble.check() }, 300000 );
+  },
+
+  check: function() {
+    if ( !speedscrabble.ok ) {
+      window.setTimeout( function() { speedscrabble.update() }, 5000 );
+    }
+    speedscrabble.ok = false;
   },
 
   update: function() {
@@ -53,6 +62,7 @@ var speedscrabble = {
       another_target.setAttribute( "tooltiptext", 'None' );
     }
     window.setTimeout( function() { speedscrabble.update() }, 30000 );
+    speedscrabble.ok = true;
   },
 
   failure: function() {
