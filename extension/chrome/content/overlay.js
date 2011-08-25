@@ -14,13 +14,21 @@ var speedscrabble = {
 
   build: function( ws, rs ) {
     var out = '';
-    for ( var i = 0; i < ws.length; i++ ) {
-      out += ws[i]['name'] + ' ';
+    if ( ws.length > 0 ) {
+      out = 'Waiting: ';
+      for ( var i = 0; i < ws.length; i++ ) {
+        out += ws[i]['name'] + ' ';
+      }
+      out += '\n';
     }
-    for ( var i = 0; i < rs.length; i++ ) {
-      out += rs[i]['name'] + ' ';
+    if ( rs.length > 0 ) {
+      out += 'Playing: ';
+      for ( var i = 0; i < rs.length; i++ ) {
+        out += rs[i]['name'] + ' ';
+      }
+      out += '\n';
     }
-    return out;
+    return out + 'Click to play!';
   },
 
   success: function(o) {
