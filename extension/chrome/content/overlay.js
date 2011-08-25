@@ -4,7 +4,7 @@ var speedscrabble = {
   load: function() {
     // initialization code
     this.initialized = true;
-    window.setTimeout( speedscrabble.update, 1000 );
+    window.setTimeout( function() { speedscrabble.update() }, 5000 );
   },
 
   update: function() {
@@ -52,12 +52,12 @@ var speedscrabble = {
       target.setAttribute( "tooltiptext", 'None' );
       another_target.setAttribute( "tooltiptext", 'None' );
     }
-    window.setTimeout( speedscrabble.update, 30000 );
+    window.setTimeout( function() { speedscrabble.update() }, 30000 );
   },
 
   failure: function() {
     document.getElementById("speedscrabble-status-label").label = '?';
-    window.setTimeout( speedscrabble.update, 60000 );
+    window.setTimeout( function() { speedscrabble.update() }, 60000 );
   },
 
   show: function() {
