@@ -4,7 +4,6 @@
 <!DOCTYPE overlay >
 <overlay id="speedscrabble-overlay"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-  <script src="yui.js"/>
   <script src="overlay.js"/>
 <!-- Firefox -->
 <statusbar id="status-bar">

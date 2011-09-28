@@ -18,7 +18,21 @@ var speedscrabble = {
 
   update: function() {
     document.getElementById("speedscrabble-status-label").label = 'Checking...';
-    YAHOO.util.Connect.asyncRequest('POST', speedscrabble.server + "speed_scrabble_server.php", { success: speedscrabble.success, failure: speedscrabble.failed }, "json=" + YAHOO.lang.JSON.stringify({ "command": "public_state" }));
+    var requester = new XMLHttpRequest();
+    requester.open( "POST", speedscrabble.server + "speed_scrabble_server.php" );
+    requester.onreadystatechange = function (e) {  
+      if (requester.readyState == 4) {  
+        if(requester.status == 200) {
+          speedscrabble.success(requester);  
+        }
+        else {
+          // speedscrabble.failed(requester);
+        }
+      }
+    };
+    var data = new FormData();
+    data.append( "json", JSON.stringify({ "command": "public_state" } ) );
+    requester.send( data );
   },
 
   build: function( ws, rs ) {
@@ -41,7 +55,8 @@ var speedscrabble = {
   },
 
   success: function(o) {
-    var result = YAHOO.lang.JSON.parse(o.responseText),
+    var result = JSON.parse(o.responseText);
+    var
       total = result['waiting'].length + result['playing'].length,
       target = document.getElementById("speedscrabble-status-label"),
       another_target = document.getElementById("speedscrabble-status-icon"),
